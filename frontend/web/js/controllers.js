@@ -71,3 +71,31 @@ controllers.controller('LoginController', ['$scope', '$http', '$window', '$locat
         };
     }
 ]);
+
+controllers.controller('FeedbackController', ['$scope', '$http', '$window', '$location',
+    function($scope, $http, $window, $location) {
+
+        $scope.activeTab = 1;
+                
+        $scope.setActiveTab = function(tabToSet) {
+            $scope.activeTab = tabToSet;
+        }
+
+        // function feedback() will handle the ng-submit event for the feedback form
+        $scope.feedback = function () {
+            $scope.submitted = true;
+            $scope.error = {};
+            $http.post('api/feedback', $scope.feedbackModel).success(
+                function (data) {
+                    $window.sessionStorage.access_token = data.access_token;
+                    $location.path('/dashboard').replace();
+            }).error(
+                function (data) {
+                    angular.forEach(data, function (error) {
+                        $scope.error[error.field] = error.message;
+                    });
+                }
+            );
+        };
+    }
+]);

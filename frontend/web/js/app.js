@@ -19,6 +19,14 @@ app.config(['$routeProvider', '$httpProvider',
                 templateUrl: 'partials/contact.html',
                 controller: 'ContactController'
             }).
+            when('/feedback', {
+                templateUrl: 'partials/feedback.html',
+                controller: 'FeedbackController'
+            }).
+            when('/formwizard', {
+                templateUrl: 'partials/formwizard.html',
+                controller: 'FormwizardController'
+            }).
             when('/login', {
                 templateUrl: 'partials/login.html',
                 controller: 'LoginController'

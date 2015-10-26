@@ -3,7 +3,7 @@ namespace frontend\controllers;
 
 use Yii;
 use common\models\LoginForm;
-use frontend\models\ContactForm;
+use frontend\models\FeedbackForm;
 use yii\filters\ContentNegotiator;
 use yii\web\Response;
 use yii\filters\AccessControl;
@@ -87,6 +87,17 @@ class ApiController extends Controller
                 ];
             }
             return $response;
+        } else {
+            $model->validate();
+            return $model;
+        }
+    }
+
+    public function actionFeedback()
+    {
+        $model = new FeedbackForm();
+        if ($model->load(Yii::$app->getRequest()->getBodyParams(), '') && $model->validate()) {
+            echo "string";
         } else {
             $model->validate();
             return $model;

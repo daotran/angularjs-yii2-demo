@@ -42,6 +42,9 @@ AppAsset::register($this);
                     <li data-match-route="/contact">
                         <a href="#/contact">Contact</a>
                     </li>
+                    <li data-match-route="/feedback">
+                        <a href="#/feedback">Feedback</a>
+                    </li>
                     <li data-match-route="/dashboard" ng-show="loggedIn()" class="ng-hide">
                         <a href="#/dashboard">Dashboard</a>
                     </li>
