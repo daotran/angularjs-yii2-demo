@@ -87,8 +87,10 @@ controllers.controller('FeedbackController', ['$scope', '$http', '$window', '$lo
             $scope.error = {};
             $http.post('api/feedback', $scope.feedbackModel).success(
                 function (data) {
-                    $window.sessionStorage.access_token = data.access_token;
-                    $location.path('/dashboard').replace();
+                    $scope.feedbackModel = {};
+                    $scope.flash = data.flash;
+                    $window.scrollTo(0,0);
+                    $scope.submitted = false;
             }).error(
                 function (data) {
                     angular.forEach(data, function (error) {
