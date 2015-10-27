@@ -2,6 +2,7 @@
 namespace frontend\controllers;
 
 use Yii;
+use common\models\User;
 use common\models\LoginForm;
 use frontend\models\ContactForm;
 use frontend\models\Feedback;
@@ -98,12 +99,35 @@ class ApiController extends Controller
     {
         $model = new Feedback();
         if ($model->load(Yii::$app->getRequest()->getBodyParams(), '') && $model->validate()) {
-            $response = [
+
+            // Getting posted data and decodeing json
+            $_POST = json_decode(file_get_contents('php://input'), true);
+
+            $model->name = $_POST['name'];
+            $model->age = $_POST['age'];
+            $model->sex = $_POST['sex'];
+            $model->country = $_POST['country'];
+            $model->state = $_POST['state'];
+            $model->addr1 = $_POST['addr1'];
+            $model->addr2 = $_POST['addr2'];
+            $model->comment = $_POST['comment'];
+
+            if ($model->save()) {
+                $response = [
                     'flash' => [
                         'class' => 'success',
-                        'message' => 'Thank you for contacting us. We will respond to you as soon as possible.',
+                        'message' => 'Thanks for your feedback.',
                     ]
                 ];
+            } else {
+                $response = [
+                    'flash' => [
+                        'class' => 'error',
+                        'message' => 'Model could not be save.',
+                    ]                    
+                ];
+            }
+
             return $response;
         } else {
             $model->validate();

@@ -91,7 +91,7 @@ controllers.controller('FeedbackController', ['$scope', '$http', '$window', '$lo
                     $scope.flash = data.flash;
                     $window.scrollTo(0,0);
                     $scope.submitted = false;
-                    $location.path('/dashboard').replace();
+                    //$location.path('/dashboard').replace();
             }).error(
                 function (data) {
                     angular.forEach(data, function (error) {

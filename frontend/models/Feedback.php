@@ -3,33 +3,22 @@
 namespace frontend\models;
 
 use Yii;
-use yii\base\Model;
 
 /**
- * User model
+ * This is the model class for table "feedback".
  *
  * @property integer $id
  * @property string $name
- * @property string $age
- * @property string $sex
+ * @property integer $age
+ * @property boolean $sex
  * @property string $country
  * @property string $state
- * @property integer $addr1
- * @property integer $addr2
- * @property integer $comment
+ * @property string $addr1
+ * @property string $addr2
+ * @property string $comment
  */
-
-class Feedback extends Model
+class Feedback extends \yii\db\ActiveRecord
 {
-    public $name;
-    public $age;
-    public $sex;
-    public $country;
-    public $state;
-    public $addr1;
-    public $addr2;    
-    public $comment;
-
     /**
      * @inheritdoc
      */
@@ -44,9 +33,28 @@ class Feedback extends Model
     public function rules()
     {
         return [
-            // name, age, sex, country, state, addr1, addr2 and comment are required
-            [['name', 'age', 'sex', 'country', 'state', 'addr1' ,'addr2', 'comment'], 'required']
+            [['name', 'age', 'country', 'sex', 'state', 'addr1', 'addr2', 'comment'], 'required'],
+            [['age'], 'integer'],
+            [['sex'], 'boolean'],
+            [['name', 'country', 'state', 'addr1', 'addr2', 'comment'], 'string', 'max' => 255]
         ];
     }
 
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
+            'id' => Yii::t('app', 'ID'),
+            'name' => Yii::t('app', 'Name'),
+            'age' => Yii::t('app', 'Age'),
+            'sex' => Yii::t('app', 'Sex'),
+            'country' => Yii::t('app', 'Country'),
+            'state' => Yii::t('app', 'State'),
+            'addr1' => Yii::t('app', 'Addr1'),
+            'addr2' => Yii::t('app', 'Addr2'),
+            'comment' => Yii::t('app', 'Comment'),
+        ];
+    }
 }
