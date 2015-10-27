@@ -23,10 +23,6 @@ app.config(['$routeProvider', '$httpProvider',
                 templateUrl: 'partials/feedback.html',
                 controller: 'FeedbackController'
             }).
-            when('/formwizard', {
-                templateUrl: 'partials/formwizard.html',
-                controller: 'FormwizardController'
-            }).
             when('/login', {
                 templateUrl: 'partials/login.html',
                 controller: 'LoginController'

@@ -4,7 +4,7 @@ namespace frontend\controllers;
 use Yii;
 use common\models\LoginForm;
 use frontend\models\ContactForm;
-use frontend\models\FeedbackForm;
+use frontend\models\Feedback;
 use yii\filters\ContentNegotiator;
 use yii\web\Response;
 use yii\filters\AccessControl;
@@ -96,9 +96,15 @@ class ApiController extends Controller
 
     public function actionFeedback()
     {
-        $model = new FeedbackForm();
+        $model = new Feedback();
         if ($model->load(Yii::$app->getRequest()->getBodyParams(), '') && $model->validate()) {
-            return $model;
+            $response = [
+                    'flash' => [
+                        'class' => 'success',
+                        'message' => 'Thank you for contacting us. We will respond to you as soon as possible.',
+                    ]
+                ];
+            return $response;
         } else {
             $model->validate();
             return $model;
