@@ -23,7 +23,7 @@ class AppAsset extends AssetBundle
     public $js = [
         'js/app.js',
         'js/controllers.js',
-        //'js/tabs.js',
+        'js/ui-bootstrap-tpls-0.14.3.min.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

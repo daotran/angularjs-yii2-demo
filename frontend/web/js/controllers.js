@@ -1,6 +1,6 @@
 'use strict';
 
-var controllers = angular.module('controllers', []);
+var controllers = angular.module('controllers', ['ui.bootstrap']);
 
 controllers.controller('MainController', ['$scope', '$location', '$window',
     function ($scope, $location, $window) {
