@@ -17,6 +17,11 @@
   </form>
 </<div>
 -->
+<div ng-show="flash" class="alert alert-{{ flash.class }}">
+    {{flash.message}}
+</div>
+<h1>Feedback</h1>
+
 <div class="row">
   <div class="col-lg-5">
     <form ng-submit="feedback()" name="feedbackForm" id="feedback-form" method="post" role="form" >
