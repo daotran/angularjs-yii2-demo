@@ -19,8 +19,10 @@ class AppAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         'css/site.css',
+        'css/v-tabs.css',
     ];
     public $js = [
+        'js/v-tabs.js',
         'js/app.js',
         'js/controllers.js',
         'js/ui-bootstrap-tpls-0.14.3.min.js',

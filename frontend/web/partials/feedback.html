@@ -1,118 +1,28 @@
-<!--
-<div ng-controller="FeedbackController as vm">
-  <form id="tabs" ng-submit="vm.onSubmit()" name="vm.form" novalidate>
-    <tabset>
-      <tab ng-repeat="tab in vm.tabs"
-           heading="{{tab.title}}"
-           active="tab.active"
-           disable="tab.disabled">
-        <formly-form model="tab.form.model" fields="tab.form.fields" form="vm.form" options="tab.form.options">
-        </formly-form>
-      </tab>
-      <tab heading="Step 3">
-        <button type="submit" class="btn btn-primary submit-button" ng-disabled="vm.form.$invalid">Submit</button>
-        <button type="button" class="btn btn-default" ng-click="vn.resetAllForms()">Reset</button>
-      </tab>
-    </tabset>
-  </form>
-</<div>
--->
 <div ng-show="flash" class="alert alert-{{ flash.class }}">
     {{flash.message}}
 </div>
 <h1>Feedback</h1>
 
-<div class="row">
-  <div class="col-lg-5">
-    <form ng-submit="feedback()" name="feedbackForm" id="feedback-form" method="post" role="form" >
-      <div>
-        <ul class="nav nav-tabs">
-          <li ng-class="{'active' : activeTab == 1}"><a href="" ng-click="setActiveTab(1)">One</a></li>
-          <li ng-class="{'active' : activeTab == 2}"><a href="" ng-click="setActiveTab(2)">Two</a></li>
-          <li ng-class="{'active' : activeTab == 3}"><a href="" ng-click="setActiveTab(3)">Three</a></li>
-        </ul>
-    
-        <div class="tab-content">
-          <div ng-class="{'tab-pane active': activeTab === 1, 'tab-pane' : activeTab !== 1}">
-            <div id="step1">
-                <h4>Basic Information</h4>
+<v-tabs class="vTabs--default" horizontal active="activeTabIndex">
+  <v-tab>Tab 1</v-tab>
+  <v-tab>Tab 2</v-tab>
+  <v-tab>Tab 3</v-tab>
+</v-tabs>
 
-                <div ng-class="{ 'has-success': !error['name'] && submitted,
-                  'has-error': error['name'] && submitted }"
-                  class="form-group field-feedbackform-name required">
-                  <label class="control-label" for="feedbackform-name">Name:</label><br>
-                  <input ng-model="feedbackModel.name" id="feedbackform-name" name="name" type="text" class="form-control"></input>
-                  <p class="help-block help-block-error">{{ error['name'] }}</p>
-                </div>
-                <div ng-class="{ 'has-success': !error['age'] && submitted,
-                  'has-error': error['age'] && submitted }"
-                  class="form-group field-feedbackform-age required">
-                  <label class="control-label" for="feedbackform-age">Age:</label><br>
-                  <input ng-model="feedbackModel.age" id="feedbackform-age" name="age" class="form-control"></input>
-                  <p class="help-block help-block-error">{{ error['age'] }}</p>
-                </div>
-                <div ng-class="{ 'has-success': !error['sex'] && submitted,
-                  'has-error': error['sex'] && submitted }"
-                  class="form-group field-feedbackform-sex required">
-                  <label class="control-label" for="feedbackform-sex">Sex:</label><br>
-                  <input ng-model="feedbackModel.sex" id="feedbackform-male" type="radio" name="sex" value="1"/> Male
-                  <input ng-model="feedbackModel.sex" id="feedbackform-female" type="radio" name="sex" value="0"/>Female
-                  <p class="help-block help-block-error">{{ error['sex'] }}</p>
-                </div>     
-              </div>
-            </div>
-            <div ng-class="{'tab-pane active': activeTab === 2, 'tab-pane' : activeTab !== 2}">
-              <div id="step2">
-                <h4>Shipping Address</h4>
+<v-pages class="vPages--default" active="activeTabIndex">
+  <v-page>
+    <h3>Page 1</h3>
+    <p>Lorem ipsum dolor sit amet enim. Etiam ullamcorper. Suspendisse a pellentesque dui, non felis.</p>
+  </v-page>
+  <v-page>
+    <h3>Page 2</h3>
+    <p>Maecenas malesuada elit lectus felis, malesuada ultricies.</p>
+  </v-page>
+  <v-page>
+    <h3>Page 3</h3>
+    <p>Curabitur et ligula. Ut molestie a, ultricies porta urna.</p>
+  </v-page>
+</v-pages>
 
-                <div ng-class="{ 'has-success': !error['country'] && submitted,
-                  'has-error': error['country'] && submitted }"
-                  class="form-group field-feedbackform-country required">
-                  <label class="control-label" for="feedbackform-country">Country:</label><br>
-                  <input ng-model="feedbackModel.country" id="feedbackform-name" class="form-control"></input>
-                  <p class="help-block help-block-error">{{ error['country'] }}</p>
-                </div>
-                <div ng-class="{ 'has-success': !error['state'] && submitted,
-                  'has-error': error['state'] && submitted }"
-                  class="form-group field-feedbackform-state required">
-                  <label class="control-label" for="feedbackform-state">State/Province:</label><br>
-                  <input ng-model="feedbackModel.state" id="feedbackform-state" class="form-control"></input>
-                  <p class="help-block help-block-error">{{ error['state'] }}</p>
-                </div>
-                <div ng-class="{ 'has-success': !error['addr1'] && submitted,
-                  'has-error': error['addr1'] && submitted }"
-                  class="form-group field-feedbackform-addr1 required">
-                  <label class="control-label" for="feedbackform-addr1">Address #1:</label><br>
-                  <input ng-model="feedbackModel.addr1" id="feedbackform-addr1" class="form-control"></input>
-                  <p class="help-block help-block-error">{{ error['addr1'] }}</p>
-                </div>
-                <div ng-class="{ 'has-success': !error['addr2'] && submitted,
-                  'has-error': error['addr2'] && submitted }"
-                  class="form-group field-feedbackform-addr2 required">
-                  <label class="control-label" for="feedbackform-addr2">Address #2:</label><br>
-                  <input ng-model="feedbackModel.addr2" id="feedbackform-addr2" class="form-control"></input>
-                  <p class="help-block help-block-error">{{ error['addr2'] }}</p>
-                </div>
-              </div>
-            </div>
-          <div ng-class="{'tab-pane active': activeTab === 3, 'tab-pane' : activeTab !== 3}">
-            <div id="step3">
-              <h4>Comments</h4>
-
-              <div ng-class="{ 'has-success': !error['comment'] && submitted,
-                'has-error': error['comment'] && submitted }"
-                class="form-group field-feedbackform-comment required">
-                <label class="control-label" for="feedbackform-comment">Any additional instructions:</label><br>
-                <textarea ng-model="feedbackModel.comment" id="feedbackform-comment" class="form-control" style="width:350px;height:150px"></textarea>
-                <p class="help-block help-block-error">{{ error['comment'] }}</p>
-              </div>
-            </div>            
-          </div>
-        </div>
-      </<div>
-      <div class="form-group">
-        <button type="submit" class="btn btn-primary" name="feedback-button">Submit</button>
-      </div>
-    </form>
-  </div>
-</div>
+<button type="button" ng-click="tabs.previous()">Previous</button>
+<button type="button" ng-click="tabs.next()">Next</button>

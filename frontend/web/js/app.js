@@ -3,7 +3,11 @@
 var app = angular.module('app', [
     'ngRoute',          //$routeProvider
     'mgcrea.ngStrap',   //bs-navbar, data-match-route directives
-    'controllers'       //Our module frontend/web/js/controllers.js
+    'controllers',      //Our module frontend/web/js/controllers.js
+    'ngAnimate',
+    'vTabs',
+    'ngSanitize',
+    'ngTouch',
 ]);
 
 app.config(['$routeProvider', '$httpProvider',

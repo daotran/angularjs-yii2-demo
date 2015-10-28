@@ -9,6 +9,9 @@ class AngularAsset extends AssetBundle
     public $sourcePath = '@bower';
     public $js = [
         'angular/angular.js',
+        'angular-animate/angular-animate.js',
+        'angular-touch/angular-touch.js',
+        'angular-sanitize/angular-sanitize.js',
         'angular-route/angular-route.js',
         'angular-strap/dist/angular-strap.js',
     ];
